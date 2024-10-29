@@ -1,10 +1,5 @@
 import React from 'react';
-
-enum Status {
-  ALL = 'all',
-  COMPLETED = 'completed',
-  ACTIVE = 'active',
-}
+import { Status } from '../../types/Status';
 
 type Props = {
   inputValue: string;

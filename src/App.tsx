@@ -10,12 +10,7 @@ import { Loader } from './components/Loader';
 import { Todo } from './types/Todo';
 import { User } from './types/User';
 import { getTodos, getUser } from './api';
-
-enum Status {
-  ALL = 'all',
-  COMPLETED = 'completed',
-  ACTIVE = 'active',
-}
+import { Status } from './types/Status';
 
 export const App: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -32,7 +27,11 @@ export const App: React.FC = () => {
   const handleSelectedStatus = (
     event: React.ChangeEvent<HTMLSelectElement>,
   ) => {
-    setSelectedStatus(event.target.value as Status);
+    const value = event.target.value;
+
+    if (Object.values(Status).includes(value as Status)) {
+      setSelectedStatus(value as Status);
+    }
   };
 
   const handleQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -61,7 +60,7 @@ export const App: React.FC = () => {
     getTodos()
       .then(setTodos)
       .finally(() => setLoadingTodo(false));
-  });
+  }, []);
 
   return (
     <>

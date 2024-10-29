@@ -1,12 +1,7 @@
 import React from 'react';
 import { Todo } from '../../types/Todo';
 import cn from 'classnames';
-
-enum Status {
-  ALL = 'all',
-  COMPLETED = 'completed',
-  ACTIVE = 'active',
-}
+import { Status } from '../../types/Status';
 
 type Props = {
   todos: Todo[];
@@ -17,7 +12,7 @@ type Props = {
 };
 
 const getPrepareList = (todos: Todo[], status: Status, query: string) => {
-  let prepareList = [...todos];
+  let prepareList = todos;
 
   switch (status) {
     case Status.ACTIVE:
